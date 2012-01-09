@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE log4j:configuration SYSTEM "log4j.dtd">
+<log4j:configuration xmlns:log4j="http://jakarta.apache.org/log4j/" debug="false">
+
+  <appender name="STDOUT" class="org.apache.log4j.ConsoleAppender">
+    <layout class="org.apache.log4j.PatternLayout">
+	    <param name="ConversionPattern" value="%-5p %d{HH:mm:ss.SSS z} %c - %m%n"/>
+	</layout>
+  </appender>
+	
+  <logger name="org">
+    <level value="DEBUG"/>
+  </logger>  
+
+  <logger name="net">
+    <level value="DEBUG"/>
+  </logger>  
+ 
+  <logger name="perf.logger" additivity="false">
+      <level value="INFO"/>
+      <appender-ref ref="orion.perf.roll.file"/>
+  </logger>  
+
+   
+  <root>
+	 <level value="DEBUG"/>
+	 <!-- <appender-ref ref="orion.application.roll.file"/> -->		
+	 <appender-ref ref="STDOUT"/>
+  </root>
+</log4j:configuration>
