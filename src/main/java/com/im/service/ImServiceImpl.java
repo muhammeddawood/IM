@@ -1,5 +1,7 @@
 package com.im.service;
 
+import org.springframework.transaction.annotation.Transactional;
+
 import com.im.User;
 import com.im.dao.FriendDao;
 import com.im.dao.UserDao;
@@ -21,8 +23,9 @@ public class ImServiceImpl implements ImService {
 		return null;
 	}
 	
+	@Transactional
+	@Override
 	public String signUpUser(String username, String password, String email) {
-		
 		boolean userExists = userDao.isExistingUser(username);
 		
 		if(userExists) {
@@ -34,7 +37,8 @@ public class ImServiceImpl implements ImService {
 		user.setEmail(email);
 		user.setPassword(password);
 		
-		userDao.save(user);
+		
+		userDao.create(user);
 		
 		return "1";
 	}
